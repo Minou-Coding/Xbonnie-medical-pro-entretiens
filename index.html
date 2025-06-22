@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide d'Entretien - Médecin Ambulancier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f36 50%, #0d1929 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(15, 20, 25, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e3a8a 100%);
+            color: #e2e8f0;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-container {
+            padding: 30px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            background: rgba(15, 20, 25, 0.6);
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 16px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            background: rgba(30, 41, 59, 1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3b82f6;
+            font-size: 20px;
+        }
+
+        .content {
+            padding: 30px;
+            background: rgba(15, 20, 25, 0.4);
+        }
+
+        .question-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-left: 5px solid #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .question-header {
+            background: rgba(51, 65, 85, 0.6);
+            padding: 20px;
+            cursor: pointer;
+            user-select: none;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .question-card.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .answer {
+            padding: 25px;
+            display: none;
+            background: rgba(30, 41, 59, 0.4);
+            color: #cbd5e1;
+        }
+
+        .question-card.active .answer {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .answer p {
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .answer ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .answer li {
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #1e3a8a 0%, #3730a3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #e0e7ff;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+            color: #e0e7ff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 150px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #94a3b8;
+            display: none;
+        }
+
+        .category {
+            background: #3b82f6;
+            color: #e0e7ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-card {
+                min-width: 120px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚑 Guide d'Entretien</h1>
+            <p>Médecin Ambulancier - FiveM Hospital</p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Rechercher une question..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalQuestions">60</span>
+                    <span>Questions</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="visibleQuestions">60</span>
+                    <span>Affichées</span>
+                </div>
+            </div>
+
+            <div id="questionsContainer">
+                <div class="question-card" data-keywords="patient inconscient urgence protocole médical">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Urgence Médicale</div>
+                                <div>Si il y a un patient inconscient devant toi, qu'est-ce que tu fais ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p><span class="highlight">Protocole d'urgence</span> pour patient inconscient :</p>
+                        <ul>
+                            <li><strong>Sécuriser la zone</strong> - M'assurer que l'environnement est sûr pour moi et le patient</li>
+                            <li><strong>Vérifier la conscience</strong> - Parler fort, tapoter les épaules</li>
+                            <li><strong>Contrôler les voies respiratoires</strong> - Vérifier qu'elles sont dégagées</li>
+                            <li><strong>Prendre les constantes vitales</strong> - Pouls, respiration, tension</li>
+                            <li><strong>Position de sécurité</strong> si respiration normale</li>
+                            <li><strong>Appeler des renforts</strong> si nécessaire</li>
+                            <li><strong>Surveillance continue</strong> jusqu'à l'arrivée à l'hôpital</li>
+                        </ul>
+                        <p>Je reste calme et professionnel, en appliquant strictement les protocoles de premiers secours.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="triage priorité patients salle attente urgence">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion des Priorités</div>
+                                <div>Si il y a 10 patients qui arrivent en salle d'attente, comment tu fais pour savoir qui soigner en priorité ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>J'applique le <span class="highlight">système de triage médical</span> :</p>
+                        <ul>
+                            <li><strong>Rouge (Urgence vitale)</strong> - Détresse respiratoire, arrêt cardiaque, hémorragie massive</li>
+                            <li><strong>Orange (Urgence)</strong> - Douleurs thoraciques, fractures ouvertes, trauma crânien</li>
+                            <li><strong>Jaune (Semi-urgent)</strong> - Douleurs modérées, plaies simples</li>
+                            <li><strong>Vert (Non urgent)</strong> - Consultations de routine, bobos légers</li>
+                            <li><strong>Bleu (Consultation)</strong> - Demandes d'information, renouvellements</li>
+                        </ul>
+                        <p>J'évalue rapidement chaque patient, je pose les bonnes questions sur les symptômes, et je priorise selon la gravité et l'urgence vitale. La communication avec l'équipe est essentielle.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="refus soins consentement patient droit">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Éthique Médicale</div>
+                                <div>Si une personne refuse que tu l'aides, tu l'aides quand même ou pas ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p><span class="highlight">Le consentement du patient est primordial</span>. Voici ma démarche :</p>
+                        <ul>
+                            <li><strong>Respecter le refus</strong> si la personne est consciente et capable de décider</li>
+                            <li><strong>Expliquer clairement</strong> les risques de refuser les soins</li>
+                            <li><strong>Documenter le refus</strong> et faire signer une décharge si possible</li>
+                            <li><strong>Rester disponible</strong> au cas où la personne change d'avis</li>
+                            <li><strong>Exception</strong> : Si danger immédiat pour autrui ou si patient non conscient</li>
+                        </ul>
+                        <p>Je dois informer mon supérieur de la situation et m'assurer que toutes les procédures légales sont respectées. Le respect de la volonté du patient est un principe fondamental.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="disponibilités horaires planning travail">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Organisation</div>
+                                <div>Quelles sont vos disponibilités ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Je suis <span class="highlight">très flexible</span> concernant mes horaires :</p>
+                        <ul>
+                            <li><strong>Soirées</strong> - Disponible la plupart du temps (créneaux privilégiés)</li>
+                            <li><strong>Après-midis</strong> - Disponible selon les jours, adaptable</li>
+                            <li><strong>Week-ends</strong> - Ouvert aux gardes et astreintes</li>
+                            <li><strong>Urgences</strong> - Prêt à me rendre disponible en cas de besoin</li>
+                        </ul>
+                        <p>J'organise mon planning en fonction des besoins de l'hôpital. Ma priorité est d'assurer un service de qualité aux patients, je suis donc prêt à m'adapter aux contraintes du service.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="motivation candidature pourquoi choisir">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Motivation</div>
+                                <div>Pourquoi vous ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Plusieurs raisons font de moi le <span class="highlight">candidat idéal</span> :</p>
+                        <ul>
+                            <li><strong>Passion pour le RP médical</strong> - J'aime créer des scénarios réalistes et immersifs</li>
+                            <li><strong>Connaissance médicale</strong> - Je me documente constamment sur les procédures</li>
+                            <li><strong>Sang-froid</strong> - Je garde mon calme dans les situations stressantes</li>
+                            <li><strong>Esprit d'équipe</strong> - J'aime collaborer et communiquer avec les collègues</li>
+                            <li><strong>Disponibilité</strong> - Flexible sur mes horaires pour répondre aux besoins</li>
+                            <li><strong>Engagement</strong> - Prêt à m'investir sur le long terme</li>
+                        </ul>
+                        <p>Je veux contribuer à offrir une expérience RP de qualité aux joueurs tout en maintenant un niveau professionnel élevé.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="apport contribution valeur ajoutée équipe">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Contribution</div>
+                                <div>Qu'est-ce que vous pensez nous apporter ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Je peux apporter plusieurs <span class="highlight">valeurs ajoutées</span> à votre équipe :</p>
+                        <ul>
+                            <li><strong>Professionnalisme</strong> - Respect strict des protocoles et procédures</li>
+                            <li><strong>Innovation RP</strong> - Idées créatives pour enrichir les scénarios médicaux</li>
+                            <li><strong>Formation</strong> - Partage de connaissances avec les nouveaux</li>
+                            <li><strong>Polyvalence</strong> - Capable d'intervenir sur différents types d'urgences</li>
+                            <li><strong>Communication</strong> - Excellente coordination avec les autres services</li>
+                            <li><strong>Fiabilité</strong> - Présence régulière et engagement constant</li>
+                        </ul>
+                        <p>Mon objectif est d'élever le niveau de qualité du service médical tout en créant une ambiance de travail positive et collaborative.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="expérience antérieure formation médicale">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Expérience</div>
+                                <div>Avez-vous déjà travaillé dans le domaine médical, en RP ou IRL ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Mon <span class="highlight">parcours médical</span> :</p>
+                        <ul>
+                            <li><strong>Formation théorique</strong> - Études approfondies des protocoles d'urgence</li>
+                            <li><strong>Expérience RP</strong> - [Adapter selon votre vraie expérience sur d'autres serveurs]</li>
+                            <li><strong>Formation continue</strong> - Je me tiens informé des dernières pratiques</li>
+                            <li><strong>Simulations</strong> - Pratique régulière de scénarios d'urgence</li>
+                        </ul>
+                        <p>Même si je débute dans ce domaine RP, ma motivation et ma volonté d'apprendre compensent largement. Je suis prêt à suivre toutes les formations nécessaires.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="stress gestion pression urgence">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion du Stress</div>
+                                <div>Comment gérez-vous le stress et la pression en situation d'urgence ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Ma <span class="highlight">gestion du stress</span> repose sur :</p>
+                        <ul>
+                            <li><strong>Respiration contrôlée</strong> - Techniques pour rester calme</li>
+                            <li><strong>Protocoles</strong> - Me concentrer sur les procédures apprises</li>
+                            <li><strong>Communication claire</strong> - Coordonner efficacement avec l'équipe</li>
+                            <li><strong>Priorisation</strong> - Me focaliser sur l'essentiel</li>
+                            <li><strong>Expérience</strong> - Plus je pratique, plus je gagne en confiance</li>
+                        </ul>
+                        <p>Je considère que le stress fait partie du métier. L'important est de le canaliser pour qu'il améliore ma performance plutôt qu'il ne la dégrade.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="teamwork équipe collaboration communication">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Travail d'Équipe</div>
+                                <div>Comment travaillez-vous en équipe avec les autres services ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Le <span class="highlight">travail d'équipe</span> est essentiel :</p>
+                        <ul>
+                            <li><strong>Communication radio</strong> - Informations claires et précises</li>
+                            <li><strong>Respect hiérarchique</strong> - Suivre les ordres des supérieurs</li>
+                            <li><strong>Collaboration police</strong> - Sécurisation des zones d'intervention</li>
+                            <li><strong>Coordination hôpital</strong> - Transmission efficace des informations patient</li>
+                            <li><strong>Entraide</strong> - Soutien mutuel dans les moments difficiles</li>
+                        </ul>
+                        <p>Je crois fermement qu'une bonne coordination entre tous les services sauve des vies et améliore l'expérience RP de chacun.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="erreur faute gestion apprentissage">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion d'Erreur</div>
+                                <div>Comment réagissez-vous face à une erreur médicale ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">erreur médicale</span> :</p>
+                        <ul>
+                            <li><strong>Reconnaissance immédiate</strong> - Admettre l'erreur sans délai</li>
+                            <li><strong>Correction rapide</strong> - Prendre les mesures pour limiter les dégâts</li>
+                            <li><strong>Information hiérarchie</strong> - Alerter immédiatement mes supérieurs</li>
+                            <li><strong>Analyse</strong> - Comprendre pourquoi l'erreur s'est produite</li>
+                            <li><strong>Apprentissage</strong> - Mettre en place des mesures préventives</li>
+                            <li><strong>Formation</strong> - Demander un complément de formation si nécessaire</li>
+                        </ul>
+                        <p>L'erreur est humaine, mais ce qui compte c'est d'en tirer les leçons pour ne plus la reproduire. La transparence est essentielle.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="objectifs carrière évolution ambition">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Évolution</div>
+                                <div>Quels sont vos objectifs à long terme dans l'hôpital ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Mes <span class="highlight">objectifs d'évolution</span> :</p>
+                        <ul>
+                            <li><strong>Court terme</strong> - Maîtriser parfaitement les protocoles de base</li>
+                            <li><strong>Moyen terme</strong> - Devenir référent sur certaines spécialités</li>
+                            <li><strong>Long terme</strong> - Possibilité d'encadrer et former les nouveaux</li>
+                            <li><strong>Spécialisation</strong> - Me former sur les urgences complexes</li>
+                            <li><strong>Innovation</strong> - Contribuer à améliorer les procédures</li>
+                        </ul>
+                        <p>Mon ambition est de grandir avec l'équipe tout en maintenant toujours l'excellence dans le service aux patients.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="conflit patient agressif situation difficile">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion de Conflit</div>
+                                <div>Comment gérez-vous un patient agressif ou non coopératif ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">patient difficile</span> :</p>
+                        <ul>
+                            <li><strong>Calme et patience</strong> - Ne jamais répondre à l'agressivité par l'agressivité</li>
+                            <li><strong>Écoute active</strong> - Comprendre la source de la frustration</li>
+                            <li><strong>Communication apaisante</strong> - Parler doucement et clairement</li>
+                            <li><strong>Limites fermes</strong> - Rappeler les règles si nécessaire</li>
+                            <li><strong>Sécurité d'abord</strong> - Appeler la sécurité/police si danger</li>
+                            <li><strong>Documentation</strong> - Rapporter l'incident à la hiérarchie</li>
+                        </ul>
+                        <p>Je garde toujours à l'esprit que derrière l'agressivité, il y a souvent de la peur ou de la douleur. Mon rôle est de rassurer et soigner.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="formation continue apprentissage amélioration">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Formation</div>
+                                <div>Êtes-vous ouvert à la formation continue et aux critiques constructives ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p><span class="highlight">Absolument ouvert</span> à l'apprentissage continu :</p>
+                        <ul>
+                            <li><strong>Formation régulière</strong> - Participer à tous les stages proposés</li>
+                            <li><strong>Critiques constructives</strong> - Les considérer comme des opportunités d'amélioration</li>
+                            <li><strong>Veille médicale</strong> - Me tenir informé des évolutions</li>
+                            <li><strong>Partage d'expérience</strong> - Apprendre des collègues expérimentés</li>
+                            <li><strong>Auto-évaluation</strong> - Analyser régulièrement mes performances</li>
+                        </ul>
+                        <p>Dans le domaine médical, on ne finit jamais d'apprendre. Chaque patient, chaque situation est une leçon potentielle.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="urgence multiple catastrophe gestion crise">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Situation de Crise</div>
+                                <div>Comment réagissez-vous face à une situation d'urgence multiple (accident de masse) ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>En cas <span class="highlight">d'urgence multiple</span> :</p>
+                        <ul>
+                            <li><strong>Plan blanc</strong> - Appliquer immédiatement les protocoles de crise</li>
+                            <li><strong>Triage rapide</strong> - Évaluation ultra-rapide pour prioriser</li>
+                            <li><strong>Communication</strong> - Coordonner avec le centre de régulation</li>
+                            <li><strong>Gestion des ressources</strong> - Optimiser l'utilisation du matériel disponible</li>
+                            <li><strong>Délégation</strong> - Répartir les tâches selon les compétences</li>
+                            <li><strong>Sang-froid</strong> - Maintenir le calme pour inspirer confiance</li>
+                        </ul>
+                        <p>L'objectif est de sauver un maximum de vies en optimisant les ressources disponibles. L'organisation et la communication sont cruciales.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="confidentialité secret médical privacy patient">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Confidentialité</div>
+                                <div>Comment gérez-vous la confidentialité médicale et le secret professionnel ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Le <span class="highlight">secret médical</span> est fondamental :</p>
+                        <ul>
+                            <li><strong>Discrétion absolue</strong> - Ne jamais divulguer d'informations patient</li>
+                            <li><strong>Communications sécurisées</strong> - Utiliser les canaux officiels uniquement</li>
+                            <li><strong>Respect de la vie privée</strong> - Protéger l'intimité des patients</li>
+                            <li><strong>Documentation confidentielle</strong> - Sécuriser tous les dossiers</li>
+                            <li><strong>Formation équipe</strong> - Sensibiliser les collègues aux règles</li>
+                        </ul>
+                        <p>Même en RP, je respecte cette règle fondamentale. La confiance des patients est précieuse et ne se reconstruit pas facilement.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="matériel médical rupture stock pénurie équipement">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion du Matériel</div>
+                                <div>Que faites-vous si vous manquez de matériel médical essentiel ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">pénurie de matériel</span> :</p>
+                        <ul>
+                            <li><strong>Évaluation immédiate</strong> - Faire l'inventaire de ce qui reste</li>
+                            <li><strong>Priorisation</strong> - Réserver le matériel aux cas les plus graves</li>
+                            <li><strong>Improvisation sécurisée</strong> - Utiliser des alternatives si possible</li>
+                            <li><strong>Demande de renfort</strong> - Contacter d'autres unités ou l'hôpital</li>
+                            <li><strong>Communication</strong> - Informer immédiatement la hiérarchie</li>
+                            <li><strong>Documentation</strong> - Signaler l'incident pour éviter les récidives</li>
+                        </ul>
+                        <p>La sécurité du patient reste prioritaire. Je ne prends jamais de risques inutiles avec du matériel défaillant.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="détresse psychologique communication patient anxieux">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Communication</div>
+                                <div>Comment communiquez-vous avec un patient en détresse psychologique ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Avec un patient en <span class="highlight">détresse psychologique</span> :</p>
+                        <ul>
+                            <li><strong>Voix calme et rassurante</strong> - Parler doucement et distinctement</li>
+                            <li><strong>Écoute active</strong> - Laisser s'exprimer sans jugement</li>
+                            <li><strong>Contact visuel</strong> - Maintenir une connexion humaine</li>
+                            <li><strong>Explications simples</strong> - Décrire chaque geste médical</li>
+                            <li><strong>Présence constante</strong> - Ne jamais laisser seul</li>
+                            <li><strong>Respect du rythme</strong> - Ne pas brusquer</li>
+                        </ul>
+                        <p>La dimension psychologique est aussi importante que les soins physiques. Un patient rassuré guérit mieux.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="transport inter-hospitalier transfert patient">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Transport Médical</div>
+                                <div>Quelle est votre procédure pour un transport inter-hospitalier ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour un <span class="highlight">transport inter-hospitalier</span> :</p>
+                        <ul>
+                            <li><strong>Dossier médical complet</strong> - Récupérer tous les documents nécessaires</li>
+                            <li><strong>Stabilisation préalable</strong> - S'assurer que le patient peut voyager</li>
+                            <li><strong>Matériel adapté</strong> - Prévoir l'équipement pour le trajet</li>
+                            <li><strong>Communication</strong> - Coordonner avec l'hôpital de destination</li>
+                            <li><strong>Surveillance continue</strong> - Monitoring pendant tout le transport</li>
+                            <li><strong>Transmission claire</strong> - Briefing complet à l'arrivée</li>
+                        </ul>
+                        <p>L'objectif est d'assurer la continuité des soins entre les établissements. Chaque détail compte pour la sécurité.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="patient pédiatrique enfant mineur">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Pédiatrie</div>
+                                <div>Comment adaptez-vous votre prise en charge pour un patient pédiatrique ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Avec un <span class="highlight">patient pédiatrique</span> :</p>
+                        <ul>
+                            <li><strong>Approche douce</strong> - Adapter ma gestuelle et ma voix</li>
+                            <li><strong>Présence des parents</strong> - Les impliquer autant que possible</li>
+                            <li><strong>Explications adaptées</strong> - Utiliser des mots simples</li>
+                            <li><strong>Dosages spécifiques</strong> - Calculer selon le poids/âge</li>
+                            <li><strong>Matériel pédiatrique</strong> - Utiliser l'équipement adapté</li>
+                            <li><strong>Distraction positive</strong> - Détourner l'attention de la douleur</li>
+                        </ul>
+                        <p>Les enfants nécessitent une approche particulière. Il faut être à la fois professionnel et rassurant.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="panne ambulance véhicule problème technique">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Incidents Techniques</div>
+                                <div>Que faites-vous en cas de panne d'ambulance avec un patient à bord ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>En cas de <span class="highlight">panne d'ambulance</span> :</p>
+                        <ul>
+                            <li><strong>Sécurité immédiate</strong> - Signaler le véhicule et protéger la zone</li>
+                            <li><strong>Évaluation patient</strong> - Vérifier son état et rassurer</li>
+                            <li><strong>Appel de secours</strong> - Demander immédiatement une ambulance de relève</li>
+                            <li><strong>Soins continus</strong> - Maintenir la surveillance médicale</li>
+                            <li><strong>Communication</strong> - Tenir informés la régulation et l'hôpital</li>
+                            <li><strong>Transfert sécurisé</strong> - Organiser le passage vers le véhicule de relève</li>
+                        </ul>
+                        <p>La continuité des soins est prioritaire. Je reste calme pour ne pas inquiéter davantage le patient.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="documentation rapport intervention dossier">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Documentation</div>
+                                <div>Comment documentez-vous vos interventions et rapports médicaux ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Ma <span class="highlight">documentation</span> est rigoureuse :</p>
+                        <ul>
+                            <li><strong>Informations complètes</strong> - Heure, lieu, identité patient, symptômes</li>
+                            <li><strong>Constantes vitales</strong> - Enregistrer tous les paramètres mesurés</li>
+                            <li><strong>Traitements administrés</strong> - Médicaments, dosages, heures</li>
+                            <li><strong>Évolution patient</strong> - Noter tous les changements d'état</li>
+                            <li><strong>Transmission hôpital</strong> - Briefing oral + dossier écrit</li>
+                            <li><strong>Archivage sécurisé</strong> - Respecter les procédures de stockage</li>
+                        </ul>
+                        <p>Un bon dossier médical peut sauver des vies. C'est un outil de communication essentiel entre professionnels.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="overdose drogue surdose toxicomanie">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Toxicologie</div>
+                                <div>Quelle est votre procédure face à une overdose ou intoxication ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">overdose</span> :</p>
+                        <ul>
+                            <li><strong>Sécurité de la scène</strong> - Vérifier l'absence de danger</li>
+                            <li><strong>ABC (Airways, Breathing, Circulation)</strong> - Contrôler les fonctions vitales</li>
+                            <li><strong>Identification du produit</strong> - Chercher des indices sur la substance</li>
+                            <li><strong>Antidote si disponible</strong> - Naloxone pour les opiacés par exemple</li>
+                            <li><strong>Support vital</strong> - Ventilation, perfusion selon les besoins</li>
+                            <li><strong>Transport urgent</strong> - Vers l'hôpital avec surveillance continue</li>
+                        </ul>
+                        <p>Aucun jugement moral, seulement des soins. Chaque vie a de la valeur, peu importe les circonstances.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="famille proches angoisse inquiétude">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Relations Humaines</div>
+                                <div>Comment gérez-vous les proches inquiets et angoissés ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Avec les <span class="highlight">proches inquiets</span> :</p>
+                        <ul>
+                            <li><strong>Empathie sincère</strong> - Comprendre leur détresse</li>
+                            <li><strong>Communication claire</strong> - Expliquer la situation sans termes techniques</li>
+                            <li><strong>Honnêteté</strong> - Être transparent sur l'état du patient</li>
+                            <li><strong>Réassurance</strong> - Expliquer les soins prodigués</li>
+                            <li><strong>Respect de l'intimité</strong> - Permettre les derniers mots si possible</li>
+                            <li><strong>Accompagnement</strong> - Les orienter vers les services sociaux si besoin</li>
+                        </ul>
+                        <p>Les proches font partie du processus de guérison. Leur soutien psychologique aide autant le patient que mes soins.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="violence patient drogue alcool agressivité">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Sécurité</div>
+                                <div>Comment réagissez-vous face à un patient violent sous l'emprise de substances ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">patient violent</span> :</p>
+                        <ul>
+                            <li><strong>Sécurité d'abord</strong> - Ma sécurité et celle de l'équipe avant tout</li>
+                            <li><strong>Appel aux forces de l'ordre</strong> - Demander un renfort immédiat</li>
+                            <li><strong>Distance de sécurité</strong> - Ne pas approcher tant que la situation n'est pas maîtrisée</li>
+                            <li><strong>Communication apaisante</strong> - Parler calmement à distance</li>
+                            <li><strong>Pas de jugement</strong> - La substance altère son comportement</li>
+                            <li><strong>Soins différés</strong> - Attendre la sécurisation pour intervenir</li>
+                        </ul>
+                        <p>Un soignant blessé ne peut plus aider personne. La sécurité n'est pas de la lâcheté, c'est du professionnalisme.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="appels multiples priorité choix urgence">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion des Appels</div>
+                                <div>Comment priorisez-vous entre plusieurs appels d'urgence simultanés ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour <span class="highlight">prioriser les appels</span> :</p>
+                        <ul>
+                            <li><strong>Évaluation vitale</strong> - Urgence absolue vs relative</li>
+                            <li><strong>Critères médicaux</strong> - Détresse respiratoire, cardiaque en priorité</li>
+                            <li><strong>Distance géographique</strong> - Optimiser les trajets</li>
+                            <li><strong>Ressources disponibles</strong> - Répartir selon les compétences</li>
+                            <li><strong>Coordination centrale</strong> - Suivre les directives de régulation</li>
+                            <li><strong>Communication continue</strong> - Tenir informés tous les appelants</li>
+                        </ul>
+                        <p>Ces décisions sont difficiles mais nécessaires. L'objectif est de sauver le maximum de vies avec les moyens disponibles.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="collègue difficulté soutien entraide équipe">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Solidarité</div>
+                                <div>Quelle est votre attitude face à un collègue en difficulté ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">collègue en difficulté</span> :</p>
+                        <ul>
+                            <li><strong>Écoute bienveillante</strong> - Être disponible sans jugement</li>
+                            <li><strong>Soutien pratique</strong> - Proposer une aide concrète</li>
+                            <li><strong>Discrétion</strong> - Respecter sa vie privée</li>
+                            <li><strong>Orientation</strong> - L'aider à trouver les bonnes ressources</li>
+                            <li><strong>Suppléance</strong> - Prendre le relais si nécessaire</li>
+                            <li><strong>Alerte hiérarchie</strong> - Si la sécurité des patients est en jeu</li>
+                        </ul>
+                        <p>L'esprit d'équipe passe par la solidarité. Un collègue qui va mal peut mettre en danger les patients.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="fatigue garde épuisement performance">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion Personnelle</div>
+                                <div>Comment gérez-vous la fatigue lors de longues gardes ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour gérer la <span class="highlight">fatigue</span> :</p>
+                        <ul>
+                            <li><strong>Repos préventif</strong> - Bien dormir avant la garde</li>
+                            <li><strong>Alimentation équilibrée</strong> - Éviter les pics de glycémie</li>
+                            <li><strong>Hydratation</strong> - Boire régulièrement</li>
+                            <li><strong>Micro-pauses</strong> - Profiter des moments calmes</li>
+                            <li><strong>Rotation des tâches</strong> - Alterner avec les collègues</li>
+                            <li><strong>Reconnaissance des limites</strong> - Demander un relais si nécessaire</li>
+                        </ul>
+                        <p>La fatigue est un ennemi des soins de qualité. Je dois être honnête sur mon état pour la sécurité des patients.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="maltraitance violence conjugale enfant suspicion">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Protection</div>
+                                <div>Que faites-vous si vous suspectez de la maltraitance ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>En cas de <span class="highlight">suspicion de maltraitance</span> :</p>
+                        <ul>
+                            <li><strong>Observation attentive</strong> - Noter tous les indices</li>
+                            <li><strong>Documentation précise</strong> - Photographier les blessures si possible</li>
+                            <li><strong>Écoute de la victime</strong> - Créer un climat de confiance</li>
+                            <li><strong>Pas d'accusation directe</strong> - Éviter de mettre en danger</li>
+                            <li><strong>Signalement obligatoire</strong> - Alerter les autorités compétentes</li>
+                            <li><strong>Protection immédiate</strong> - Si danger imminent</li>
+                        </ul>
+                        <p>C'est un devoir moral et légal. Je peux sauver une vie en brisant le silence sur ces situations.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="décès mort patient famille deuil">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Deuil</div>
+                                <div>Comment réagissez-vous face au décès d'un patient ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face au <span class="highlight">décès d'un patient</span> :</p>
+                        <ul>
+                            <li><strong>Acceptation professionnelle</strong> - Reconnaître que nous ne pouvons pas tout</li>
+                            <li><strong>Respect de la dignité</strong> - Traiter le défunt avec honneur</li>
+                            <li><strong>Soutien aux proches</strong> - Les accompagner dans cette épreuve</li>
+                            <li><strong>Analyse constructive</strong> - Revoir les soins sans culpabilisation</li>
+                            <li><strong>Soutien psychologique</strong> - Chercher de l'aide si nécessaire</li>
+                            <li><strong>Apprentissage</strong> - Tirer des leçons pour l'avenir</li>
+                        </ul>
+                        <p>La mort fait partie de notre métier. L'important est d'avoir donné le meilleur de soi-même pour chaque patient.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="expérience professionnelle parcours cv formation">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Parcours</div>
+                                <div>Pouvez-vous nous parler de votre parcours professionnel et de vos formations ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Mon <span class="highlight">parcours professionnel</span> :</p>
+                        <ul>
+                            <li><strong>Formation initiale</strong> - [Adapter selon votre vraie formation ou invention crédible]</li>
+                            <li><strong>Stages pratiques</strong> - Expérience en service d'urgence</li>
+                            <li><strong>Certifications</strong> - PSC1, PSE1, formations spécialisées</li>
+                            <li><strong>Formation continue</strong> - Mise à jour régulière des connaissances</li>
+                            <li><strong>Spécialisations</strong> - Domaines d'expertise développés</li>
+                            <li><strong>Expérience terrain</strong> - Interventions diverses et variées</li>
+                        </ul>
+                        <p>J'ai toujours eu une passion pour le secours et la médecine d'urgence. Chaque formation m'a appris quelque chose de nouveau.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="faiblesse défaut point amélioration">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Auto-évaluation</div>
+                                <div>Quels sont vos principaux défauts ou points à améliorer ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Mes <span class="highlight">points d'amélioration</span> :</p>
+                        <ul>
+                            <li><strong>Perfectionnisme</strong> - Parfois trop exigeant avec moi-même</li>
+                            <li><strong>Impatience</strong> - Face aux procédures administratives lentes</li>
+                            <li><strong>Émotionnel</strong> - Parfois trop affecté par certains cas</li>
+                            <li><strong>Formation continue</strong> - Toujours envie d'apprendre plus</li>
+                            <li><strong>Délégation</strong> - Tendance à tout vouloir faire moi-même</li>
+                        </ul>
+                        <p>Je travaille activement sur ces aspects et je les considère comme des opportunités de croissance professionnelle.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="qualité atout force compétence personnelle">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Atouts</div>
+                                <div>Quelles sont vos principales qualités professionnelles ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Mes <span class="highlight">qualités principales</span> :</p>
+                        <ul>
+                            <li><strong>Empathie</strong> - Capacité à comprendre et rassurer les patients</li>
+                            <li><strong>Sang-froid</strong> - Garde mon calme dans les situations critiques</li>
+                            <li><strong>Rigueur</strong> - Respect strict des protocoles et procédures</li>
+                            <li><strong>Adaptabilité</strong> - Capacité à m'ajuster aux situations inattendues</li>
+                            <li><strong>Communication</strong> - Excellente relation avec patients et équipes</li>
+                            <li><strong>Détermination</strong> - Je ne baisse jamais les bras</li>
+                        </ul>
+                        <p>Ces qualités me permettent d'être efficace tout en maintenant une relation humaine de qualité avec les patients.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="arrêt cardiaque réanimation massage cardiaque défibrillateur">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Réanimation</div>
+                                <div>Décrivez votre procédure face à un arrêt cardiaque ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">arrêt cardiaque</span> :</p>
+                        <ul>
+                            <li><strong>Vérification conscience</strong> - "Monsieur, vous m'entendez ?"</li>
+                            <li><strong>Appel à l'aide</strong> - Demander assistance et défibrillateur</li>
+                            <li><strong>Position</strong> - Patient sur surface dure, tête en hyperextension</li>
+                            <li><strong>Massage cardiaque</strong> - 30 compressions, rythme 100-120/min</li>
+                            <li><strong>Ventilation</strong> - 2 insufflations après les compressions</li>
+                            <li><strong>Défibrillation</strong> - Suivre les instructions du DSA/DEA</li>
+                            <li><strong>Alternance</strong> - Cycles de 30:2 jusqu'à reprise ou relève</li>
+                        </ul>
+                        <p>La rapidité et la qualité du massage sont cruciales. Chaque minute compte pour les chances de survie.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="hémorragie saignement pansement compression">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Traumatologie</div>
+                                <div>Comment traitez-vous une hémorragie importante ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour une <span class="highlight">hémorragie importante</span> :</p>
+                        <ul>
+                            <li><strong>Compression directe</strong> - Pression ferme sur la plaie</li>
+                            <li><strong>Surélévation</strong> - Lever le membre si possible</li>
+                            <li><strong>Pansement compressif</strong> - Maintenir la pression</li>
+                            <li><strong>Point de compression</strong> - Si échec, comprimer l'artère en amont</li>
+                            <li><strong>Garrot</strong> - En dernier recours, noter l'heure</li>
+                            <li><strong>Voie veineuse</strong> - Compenser la perte volémique</li>
+                            <li><strong>Transport urgent</strong> - Vers bloc opératoire</li>
+                        </ul>
+                        <p>L'objectif est d'arrêter le saignement rapidement tout en maintenant la vitalité des tissus en aval.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="fracture immobilisation attelle traumatisme">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Orthopédie</div>
+                                <div>Quelle est votre approche pour une fracture suspectée ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">fracture suspectée</span> :</p>
+                        <ul>
+                            <li><strong>Évaluation clinique</strong> - Douleur, déformation, impotence fonctionnelle</li>
+                            <li><strong>Recherche complications</strong> - Lésions vasculo-nerveuses</li>
+                            <li><strong>Immobilisation</strong> - Dans la position trouvée</li>
+                            <li><strong>Attelle adaptée</strong> - Couvrir les articulations sus et sous-jacentes</li>
+                            <li><strong>Surveillance</strong> - Pouls, sensibilité, motricité distale</li>
+                            <li><strong>Antalgie</strong> - Soulager la douleur</li>
+                            <li><strong>Transport adapté</strong> - Éviter les mouvements</li>
+                        </ul>
+                        <p>Une bonne immobilisation évite les complications et diminue significativement la douleur du patient.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="brûlure thermique chimique refroidissement">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Brûlures</div>
+                                <div>Comment évaluez-vous et traitez-vous une brûlure ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour une <span class="highlight">brûlure</span> :</p>
+                        <ul>
+                            <li><strong>Évaluation</strong> - Profondeur (1er, 2e, 3e degré) et surface (règle des 9)</li>
+                            <li><strong>Refroidissement</strong> - Eau tiède 15-20°C pendant 20 minutes</li>
+                            <li><strong>Protection</strong> - Champs stériles, pas de corps gras</li>
+                            <li><strong>Antalgie</strong> - Soulagement de la douleur</li>
+                            <li><strong>Voie veineuse</strong> - Si surface > 15% chez l'adulte</li>
+                            <li><strong>Prévention infection</strong> - Asepsie rigoureuse</li>
+                            <li><strong>Transport spécialisé</strong> - Centre de grands brûlés si nécessaire</li>
+                        </ul>
+                        <p>Les brûlures graves nécessitent une prise en charge spécialisée rapide pour éviter les complications.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="crise convulsion épilepsie protection">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Neurologie</div>
+                                <div>Comment réagissez-vous face à une crise convulsive ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">crise convulsive</span> :</p>
+                        <ul>
+                            <li><strong>Protection</strong> - Écarter les objets dangereux, coussin sous la tête</li>
+                            <li><strong>Chronométrage</strong> - Noter la durée de la crise</li>
+                            <li><strong>Observation</strong> - Type de convulsions, cyanose</li>
+                            <li><strong>Liberté voies aériennes</strong> - Position latérale de sécurité après la crise</li>
+                            <li><strong>Pas de contention</strong> - Ne jamais forcer ou mettre d'objet dans la bouche</li>
+                            <li><strong>Benzodiazépines</strong> - Si crise prolongée > 5 minutes</li>
+                            <li><strong>Transport</strong> - Surtout si première crise ou état de mal</li>
+                        </ul>
+                        <p>La plupart des crises s'arrêtent spontanément. Le principal danger est traumatique ou respiratoire.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="infarctus douleur thoracique ecg syndrome coronaire">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Cardiologie</div>
+                                <div>Quels sont les signes d'un infarctus et votre conduite à tenir ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">infarctus suspecté</span> :</p>
+                        <ul>
+                            <li><strong>Signes cliniques</strong> - Douleur thoracique constrictive, irradiation bras gauche</li>
+                            <li><strong>Signes associés</strong> - Sueurs, nausées, dyspnée, angoisse</li>
+                            <li><strong>ECG 12 dérivations</strong> - Recherche sus-décalage ST</li>
+                            <li><strong>Position demi-assise</strong> - Faciliter la respiration</li>
+                            <li><strong>Oxygène</strong> - Si saturation < 94%</li>
+                            <li><strong>Aspirine</strong> - 250mg à croquer si pas de contre-indication</li>
+                            <li><strong>Transport urgent</strong> - Vers plateau technique (coronarographie)</li>
+                        </ul>
+                        <p>Le facteur temps est crucial. Plus la reperfusion est rapide, plus le pronostic est bon.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="avc accident vasculaire cérébral hémiplégie">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Neurologie</div>
+                                <div>Comment reconnaissez-vous et prenez-vous en charge un AVC ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">AVC suspecté</span> :</p>
+                        <ul>
+                            <li><strong>Test FAST</strong> - Face (asymétrie), Arms (faiblesse bras), Speech (trouble parole), Time</li>
+                            <li><strong>Heure début</strong> - Cruciale pour la thrombolyse</li>
+                            <li><strong>Glycémie</strong> - Éliminer hypoglycémie</li>
+                            <li><strong>Tension artérielle</strong> - Ne pas traiter sauf urgence</li>
+                            <li><strong>Position</strong> - Tête surélevée 30°</li>
+                            <li><strong>Voies aériennes</strong> - Aspiration si troubles déglutition</li>
+                            <li><strong>Transport urgent</strong> - Unité neuro-vasculaire</li>
+                        </ul>
+                        <p>La fenêtre thérapeutique est de 4h30 pour la thrombolyse. Chaque minute compte pour limiter les séquelles.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="asthme dyspnée bronchodilatateur crise">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Pneumologie</div>
+                                <div>Comment gérez-vous une crise d'asthme sévère ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">crise d'asthme</span> :</p>
+                        <ul>
+                            <li><strong>Position assise</strong> - Faciliter la ventilation</li>
+                            <li><strong>Bronchodilatateurs</strong> - Salbutamol en aérosol doseur</li>
+                            <li><strong>Oxygène</strong> - Si hypoxémie</li>
+                            <li><strong>Corticoïdes</strong> - Prednisolone per os ou hydrocortisone IV</li>
+                            <li><strong>Surveillance</strong> - Fréquence respiratoire, saturation, DEP</li>
+                            <li><strong>Environnement</strong> - Éliminer les facteurs déclenchants</li>
+                            <li><strong>Transport</strong> - Si pas d'amélioration ou signes de gravité</li>
+                        </ul>
+                        <p>L'asthme peut être mortel. Les signes de gravité nécessitent une prise en charge immédiate en milieu hospitalier.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="diabète hypoglycémie hyperglycémie glycémie">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Endocrinologie</div>
+                                <div>Comment distinguez-vous et traitez-vous hypo et hyperglycémie ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p><span class="highlight">Hypoglycémie</span> : sueurs, tremblements, confusion, glycémie < 0,6g/L</p>
+                        <ul>
+                            <li><strong>Si conscient</strong> - Sucres rapides per os (15g glucose)</li>
+                            <li><strong>Si inconscient</strong> - Glucagon IM ou glucose IV</li>
+                            <li><strong>Surveillance</strong> - Contrôle glycémie, état neurologique</li>
+                        </ul>
+                        <p><span class="highlight">Hyperglycémie</span> : soif, polyurie, haleine acétonique, glycémie > 2,5g/L</p>
+                        <ul>
+                            <li><strong>Réhydratation</strong> - Soluté salé isotonique</li>
+                            <li><strong>Insulinothérapie</strong> - Selon protocole médical</li>
+                            <li><strong>Transport urgent</strong> - Risque de coma acidocétosique</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="allergie anaphylaxie urticaire adrénaline">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Allergologie</div>
+                                <div>Comment reconnaissez-vous et traitez-vous un choc anaphylactique ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">choc anaphylactique</span> :</p>
+                        <ul>
+                            <li><strong>Signes</strong> - Urticaire, œdème, bronchospasme, choc</li>
+                            <li><strong>Adrénaline IM</strong> - 0,5mg en intramusculaire (cuisse)</li>
+                            <li><strong>Position</strong> - Décubitus, jambes surélevées</li>
+                            <li><strong>Voie veineuse</strong> - Remplissage vasculaire</li>
+                            <li><strong>Corticoïdes</strong> - Prévenir la récidive</li>
+                            <li><strong>Antihistaminiques</strong> - Traitement symptomatique</li>
+                            <li><strong>Surveillance</strong> - Risque de récidive à 6-12h</li>
+                        </ul>
+                        <p>Le choc anaphylactique engage le pronostic vital. L'adrénaline est le traitement de première intention.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="accident route polytraumatisé trauma">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Urgence Traumatique</div>
+                                <div>Quelle est votre approche d'un polytraumatisé ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à un <span class="highlight">polytraumatisé</span> :</p>
+                        <ul>
+                            <li><strong>Sécurité scène</strong> - Évaluer les dangers persistants</li>
+                            <li><strong>Examen primaire</strong> - ABCDE (Airway, Breathing, Circulation, Disability, Exposure)</li>
+                            <li><strong>Immobilisation</strong> - Rachis cervical en priorité</li>
+                            <li><strong>Voies aériennes</strong> - Oxygénation, ventilation</li>
+                            <li><strong>Contrôle hémorragies</strong> - Compressions, garrots si nécessaire</li>
+                            <li><strong>Voie veineuse</strong> - Remplissage prudent</li>
+                            <li><strong>Transport urgent</strong> - Vers centre de traumatologie</li>
+                        </ul>
+                        <p>L'approche systématique ABCDE permet de ne rien oublier et de traiter les urgences vitales en priorité.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="intubation voies aériennes ventilation masque">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Réanimation</div>
+                                <div>Dans quelles situations envisagez-vous une intubation ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Indications d'<span class="highlight">intubation</span> :</p>
+                        <ul>
+                            <li><strong>Arrêt cardiaque</strong> - Après échec ventilation au masque</li>
+                            <li><strong>Coma profond</strong> - Glasgow < 8</li>
+                            <li><strong>Détresse respiratoire</strong> - Hypoxémie malgré oxygène</li>
+                            <li><strong>Traumatisme facial</strong> - Risque d'obstruction</li>
+                            <li><strong>Convulsions</strong> - État de mal épileptique</li>
+                            <li><strong>Protection</strong> - Risque d'inhalation (vomissements)</li>
+                        </ul>
+                        <p>L'intubation pré-hospitalière est un geste délicat. Je privilégie toujours la ventilation au masque si elle est efficace.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="médicaments pharmacologie posologie contre-indication">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Pharmacologie</div>
+                                <div>Quels sont les principaux médicaments d'urgence et leurs indications ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p><span class="highlight">Médicaments d'urgence</span> essentiels :</p>
+                        <ul>
+                            <li><strong>Adrénaline</strong> - Choc anaphylactique, arrêt cardiaque</li>
+                            <li><strong>Atropine</strong> - Bradycardie symptomatique</li>
+                            <li><strong>Morphine</strong> - Douleur intense, OAP</li>
+                            <li><strong>Diazépam</strong> - Convulsions, agitation</li>
+                            <li><strong>Salbutamol</strong> - Bronchospasme</li>
+                            <li><strong>Furosémide</strong> - Œdème aigu pulmonaire</li>
+                            <li><strong>Glucagon</strong> - Hypoglycémie sévère</li>
+                        </ul>
+                        <p>Je connais les posologies, contre-indications et effets secondaires de chaque médicament que j'administre.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="perfusion voie veineuse cathéter sang">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Techniques</div>
+                                <div>Comment posez-vous une voie veineuse en urgence ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour poser une <span class="highlight">voie veineuse</span> :</p>
+                        <ul>
+                            <li><strong>Choix du site</strong> - Privilégier avant-bras, dos de main</li>
+                            <li><strong>Asepsie</strong> - Désinfection rigoureuse</li>
+                            <li><strong>Garrot</strong> - Pas trop serré, libérer dès ponction</li>
+                            <li><strong>Angle d'insertion</strong> - 30° environ, biseau vers le haut</li>
+                            <li><strong>Reflux sanguin</strong> - Confirmer la position intravasculaire</li>
+                            <li><strong>Fixation</strong> - Sécuriser pour éviter l'arrachement</li>
+                            <li><strong>Test</strong> - Vérifier la perméabilité</li>
+                        </ul>
+                        <p>Une bonne voie veineuse peut sauver une vie. Je privilégie toujours la sécurité à la rapidité.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="douleur antalgie morphine évaluation">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Gestion Douleur</div>
+                                <div>Comment évaluez-vous et traitez-vous la douleur ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour la <span class="highlight">gestion de la douleur</span> :</p>
+                        <ul>
+                            <li><strong>Évaluation</strong> - Échelle numérique 0-10 ou échelle visuelle</li>
+                            <li><strong>Caractérisation</strong> - Type, localisation, irradiation</li>
+                            <li><strong>Antalgie adaptée</strong> - Paracétamol, AINS, morphine selon intensité</li>
+                            <li><strong>Voie d'administration</strong> - Per os, IV, intramusculaire</li>
+                            <li><strong>Surveillance</strong> - Efficacité et effets secondaires</li>
+                            <li><strong>Réassurance</strong> - Dimension psychologique importante</li>
+                        </ul>
+                        <p>La douleur est le 5e signe vital. Un patient soulagé coopère mieux et guérit plus vite.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="communication patient stress rassurer">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Relations Humaines</div>
+                                <div>Comment adaptez-vous votre communication selon les patients ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>J'adapte ma <span class="highlight">communication</span> selon :</p>
+                        <ul>
+                            <li><strong>L'âge</strong> - Vocabulaire simple pour enfants, respect pour personnes âgées</li>
+                            <li><strong>Le niveau culturel</strong> - Éviter le jargon médical</li>
+                            <li><strong>L'état émotionnel</strong> - Patience avec patients angoissés</li>
+                            <li><strong>Les barrières linguistiques</strong> - Gestes, traducteur si nécessaire</li>
+                            <li><strong>Le handicap</strong> - Adaptation selon les déficiences</li>
+                            <li><strong>La gravité</strong> - Vérité adaptée à la situation</li>
+                        </ul>
+                        <p>Chaque patient est unique. L'écoute et l'empathie sont des outils thérapeutiques à part entière.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="urgence psychiatrique suicide agitation">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Psychiatrie</div>
+                                <div>Comment gérez-vous une urgence psychiatrique ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">urgence psychiatrique</span> :</p>
+                        <ul>
+                            <li><strong>Sécurité</strong> - Évaluer le risque pour soi et autrui</li>
+                            <li><strong>Écoute active</strong> - Laisser s'exprimer sans jugement</li>
+                            <li><strong>Communication apaisante</strong> - Voix calme, gestes lents</li>
+                            <li><strong>Éliminer cause organique</strong> - Glycémie, intoxication</li>
+                            <li><strong>Sédation</strong> - Si agitation dangereuse (halopéridol, diazépam)</li>
+                            <li><strong>Accompagnement</strong> - Vers service psychiatrique</li>
+                        </ul>
+                        <p>La maladie mentale n'est pas un choix. J'aborde ces patients avec respect et bienveillance.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="accouchement urgence naissance prématuré">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Obstétrique</div>
+                                <div>Comment assistez-vous un accouchement inopiné ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour un <span class="highlight">accouchement inopiné</span> :</p>
+                        <ul>
+                            <li><strong>Évaluation</strong> - Contractions, envie de pousser, tête visible</li>
+                            <li><strong>Position</strong> - Mère en décubitus dorsal, genoux fléchis</li>
+                            <li><strong>Asepsie</strong> - Gants stériles, champs propres</li>
+                            <li><strong>Soutien périnée</strong> - Contrôler la sortie de la tête</li>
+                            <li><strong>Dégagement</strong> - Épaules une par une</li>
+                            <li><strong>Nouveau-né</strong> - Aspiration, séchage, réchauffement</li>
+                            <li><strong>Délivrance</strong> - Surveiller l'expulsion du placenta</li>
+                        </ul>
+                        <p>L'accouchement est physiologique. Mon rôle est de surveiller et d'intervenir seulement si nécessaire.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="hypothermie froid gelure réchauffement">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Environnemental</div>
+                                <div>Comment traitez-vous une hypothermie sévère ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">hypothermie sévère</span> :</p>
+                        <ul>
+                            <li><strong>Isolement du froid</strong> - Retirer vêtements mouillés</li>
+                            <li><strong>Réchauffement passif</strong> - Couvertures, bonnet</li>
+                            <li><strong>Réchauffement actif</strong> - Solutés tièdes, couverture chauffante</li>
+                            <li><strong>Manipulation douce</strong> - Éviter la fibrillation ventriculaire</li>
+                            <li><strong>Surveillance cardiaque</strong> - Troubles du rythme fréquents</li>
+                            <li><strong>Transport précautionneux</strong> - Réanimation continue</li>
+                        </ul>
+                        <p>"Personne n'est mort tant qu'elle n'est pas réchauffée et morte". La réanimation peut être très prolongée.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="noyade asphyxie water rescue">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Sauvetage</div>
+                                <div>Quelle est votre conduite face à une noyade ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face à une <span class="highlight">noyade</span> :</p>
+                        <ul>
+                            <li><strong>Sortie de l'eau</strong> - Sauvetage par équipe spécialisée</li>
+                            <li><strong>Évaluation conscience</strong> - Glasgow, réactivité</li>
+                            <li><strong>ABC</strong> - Voies aériennes, ventilation, circulation</li>
+                            <li><strong>Réchauffement</strong> - Prévenir l'hypothermie</li>
+                            <li><strong>Surveillance</strong> - Risque d'œdème pulmonaire retardé</li>
+                            <li><strong>Transport systématique</strong> - Même si état initial satisfaisant</li>
+                        </ul>
+                        <p>Même une noyade apparemment bénigne peut se compliquer secondairement. L'hospitalisation est souvent nécessaire.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="éthique dilemme moral décision difficile">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Éthique</div>
+                                <div>Comment gérez-vous les dilemmes éthiques en urgence ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face aux <span class="highlight">dilemmes éthiques</span> :</p>
+                        <ul>
+                            <li><strong>Respect de la personne</strong> - Dignité humaine avant tout</li>
+                            <li><strong>Principe de bienfaisance</strong> - Faire le bien du patient</li>
+                            <li><strong>Non-malfaisance</strong> - "Primum non nocere"</li>
+                            <li><strong>Autonomie</strong> - Respecter les choix éclairés</li>
+                            <li><strong>Justice</strong> - Équité dans l'accès aux soins</li>
+                            <li><strong>Consultation</strong> - Demander l'avis d'un médecin senior si possible</li>
+                        </ul>
+                        <p>En urgence, je privilégie toujours la vie et la réflexion éthique se fait dans un second temps avec l'équipe.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="recherche innovation évolution médecine">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Innovation</div>
+                                <div>Comment vous tenez-vous informé des évolutions médicales ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour ma <span class="highlight">formation continue</span> :</p>
+                        <ul>
+                            <li><strong>Revues spécialisées</strong> - Littérature médicale d'urgence</li>
+                            <li><strong>Congrès</strong> - Participation aux événements scientifiques</li>
+                            <li><strong>Formations en ligne</strong> - E-learning, webinaires</li>
+                            <li><strong>Échanges professionnels</strong> - Discussions avec collègues experts</li>
+                            <li><strong>Recherche active</strong> - Questionnement sur mes pratiques</li>
+                            <li><strong>Protocoles actualisés</strong> - Mise à jour régulière des procédures</li>
+                        </ul>
+                        <p>La médecine évolue constamment. Un bon soignant est un soignant qui continue d'apprendre toute sa carrière.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="organisation planning efficacité optimisation">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Organisation</div>
+                                <div>Comment optimisez-vous votre efficacité lors des interventions ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Pour optimiser mon <span class="highlight">efficacité</span> :</p>
+                        <ul>
+                            <li><strong>Préparation matériel</strong> - Vérification systématique avant prise de service</li>
+                            <li><strong>Anticipation</strong> - Prévoir le matériel selon le type d'appel</li>
+                            <li><strong>Protocoles</strong> - Automatismes pour gagner du temps</li>
+                            <li><strong>Communication claire</strong> - Instructions précises à l'équipe</li>
+                            <li><strong>Priorisation</strong> - Traiter l'urgent avant l'important</li>
+                            <li><strong>Évaluation continue</strong> - Adapter la stratégie selon l'évolution</li>
+                        </ul>
+                        <p>L'efficacité en urgence se prépare. Plus je suis organisé, plus je peux me concentrer sur le patient.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="situation légale police justice témoignage">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Aspects Légaux</div>
+                                <div>Quelle est votre attitude face aux réquisitions judiciaires ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Face aux <span class="highlight">réquisitions judiciaires</span> :</p>
+                        <ul>
+                            <li><strong>Respect de la loi</strong> - Obligation de déférer aux réquisitions</li>
+                            <li><strong>Secret médical</strong> - Équilibre avec l'obligation légale</li>
+                            <li><strong>Documentation précise</strong> - Constats objectifs et factuels</li>
+                            <li><strong>Neutralité</strong> - Pas d'interprétation, que des faits</li>
+                            <li><strong>Coordination</strong> - Travailler avec les forces de l'ordre</li>
+                            <li><strong>Formation juridique</strong> - Connaître mes droits et devoirs</li>
+                        </ul>
+                        <p>Je reste avant tout un soignant, mais je respecte mes obligations légales tout en protégeant mes patients.</p>
+                    </div>
+                </div>
+
+                <div class="question-card" data-keywords="motivation longue durée carrière passion">
+                    <div class="question-header">
+                        <div class="question-title">
+                            <div>
+                                <div class="category">Motivation</div>
+                                <div>Qu'est-ce qui vous motive dans ce métier sur le long terme ?</div>
+                            </div>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p>Mes <span class="highlight">motivations profondes</span> :</p>
+                        <ul>
+                            <li><strong>Impact humain</strong> - Sauver des vies, soulager la souffrance</li>
+                            <li><strong>Variété</strong> - Chaque intervention est différente</li>
+                            <li><strong>Apprentissage constant</strong> - Toujours de nouveaux défis</li>
+                            <li><strong>Esprit d'équipe</strong> - Solidarité exceptionnelle</li>
+                            <li><strong>Utilité sociale</strong> - Service rendu à la collectivité</li>
+                            <li><strong>Évolution technique</strong> - Innovations constantes</li>
+                        </ul>
+                        <p>Ce métier a du sens. Savoir qu'on peut faire la différence entre la vie et la mort donne une énergie incroyable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-results" id="noResults">
+                <h3>Aucune question trouvée</h3>
+                <p>Essayez avec d'autres mots-clés</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const questionsContainer = document.getElementById('questionsContainer');
+        const questionCards = document.querySelectorAll('.question-card');
+        const noResults = document.getElementById('noResults');
+        const totalQuestionsSpan = document.getElementById('totalQuestions');
+        const visibleQuestionsSpan = document.getElementById('visibleQuestions');
+
+        // Toggle question cards
+        questionCards.forEach(card => {
+            const header = card.querySelector('.question-header');
+            header.addEventListener('click', () => {
+                card.classList.toggle('active');
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            questionCards.forEach(card => {
+                const questionText = card.querySelector('.question-title').textContent.toLowerCase();
+                const answerText = card.querySelector('.answer').textContent.toLowerCase();
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                
+                const isVisible = questionText.includes(searchTerm) || 
+                                answerText.includes(searchTerm) || 
+                                keywords.includes(searchTerm);
+
+                if (isVisible || searchTerm === '') {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update stats
+            visibleQuestionsSpan.textContent = visibleCount;
+            
+            // Show/hide no results message
+            if (visibleCount === 0 && searchTerm !== '') {
+                noResults.style.display = 'block';
+                questionsContainer.style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                questionsContainer.style.display = 'block';
+            }
+        });
+
+        // Keyboard shortcut for search
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        // Auto-expand first question
+        questionCards[0].classList.add('active');
+    </script>
+</body>
+</html>
