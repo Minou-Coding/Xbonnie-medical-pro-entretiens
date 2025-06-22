@@ -97,6 +97,54 @@
             background: rgba(15, 20, 25, 0.4);
         }
 
+        .tips-section {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .tips-title {
+            color: #3b82f6;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tip-card {
+            background: rgba(15, 20, 25, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .tip-card h4 {
+            color: #e2e8f0;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .tip-card ul {
+            color: #cbd5e1;
+            padding-left: 20px;
+        }
+
+        .tip-card li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .tip-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
         .question-card {
             background: rgba(30, 41, 59, 0.6);
             border-radius: 15px;
@@ -106,6 +154,7 @@
             transition: all 0.3s ease;
             border-left: 5px solid #3b82f6;
             border: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
         }
 
         .question-card:hover {
@@ -114,12 +163,48 @@
             border-color: rgba(59, 130, 246, 0.4);
         }
 
+        .question-card.favorited {
+            border-left-color: #f59e0b;
+            background: rgba(30, 41, 59, 0.8);
+        }
+
         .question-header {
             background: rgba(51, 65, 85, 0.6);
             padding: 20px;
             cursor: pointer;
             user-select: none;
             border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            position: relative;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #94a3b8;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favorite-btn:hover {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            background: #f59e0b;
+            color: white;
         }
 
         .question-title {
@@ -129,6 +214,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-right: 50px;
         }
 
         .toggle-icon {
@@ -230,6 +316,36 @@
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
 
+        .favorites-toggle {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .favorites-btn {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .favorites-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .favorites-btn.active {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+
+        /* Responsive Design */
         @media (max-width: 1200px) {
             .container {
                 margin: 15px;
@@ -308,11 +424,20 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
+                margin-right: 20px;
             }
             
             .toggle-icon {
                 align-self: flex-end;
                 margin-top: -30px;
+            }
+
+            .favorite-btn {
+                top: 10px;
+                right: 10px;
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
             }
             
             .answer {
@@ -419,6 +544,14 @@
             .highlight {
                 padding: 1px 4px;
             }
+
+            .tips-section {
+                padding: 15px;
+            }
+
+            .tip-card {
+                padding: 15px;
+            }
         }
 
         @media (max-width: 320px) {
@@ -484,6 +617,68 @@
         </div>
 
         <div class="content">
+            <!-- Section Conseils & Astuces -->
+            <div class="tips-section">
+                <div class="tips-title">
+                    💡 Conseils pour réussir votre entretien
+                </div>
+                
+                <div class="tip-card">
+                    <h4>🎭 Présentation & Posture</h4>
+                    <ul>
+                        <li><strong>Tenue professionnelle</strong> - Uniforme propre, badge visible</li>
+                        <li><strong>Posture droite</strong> - Confiance et professionnalisme</li>
+                        <li><strong>Contact visuel</strong> - Regard direct avec les recruteurs</li>
+                        <li><strong>Sourire naturel</strong> - Montrer votre motivation</li>
+                        <li><strong>Ponctualité</strong> - Arriver 10 minutes en avance</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <h4>🚑 Spécificités FiveM/RP</h4>
+                    <ul>
+                        <li><strong>Immersion totale</strong> - Restez dans le personnage pendant l'entretien</li>
+                        <li><strong>Réalisme médical</strong> - Connaissances techniques précises</li>
+                        <li><strong>Collaboration RP</strong> - Travail avec police, pompiers, autres services</li>
+                        <li><strong>Patience RP</strong> - Respecter le rythme des autres joueurs</li>
+                        <li><strong>Créativité scénarisée</strong> - Apporter des idées d'événements médicaux</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <h4>❌ Erreurs à éviter absolument</h4>
+                    <ul>
+                        <li><strong>Ne jamais dire</strong> : "Je ne sais pas" → dire plutôt "Je vais me former sur ce point"</li>
+                        <li><strong>Éviter</strong> : Critiquer d'anciens services ou collègues</li>
+                        <li><strong>Ne pas</strong> : Montrer de l'impatience ou du stress visible</li>
+                        <li><strong>Éviter</strong> : Les réponses trop courtes ou non développées</li>
+                        <li><strong>Ne pas</strong> : Mentionner des aspects "jeu vidéo" (HUD, respawn, etc.)</li>
+                    </ul>
+                </div>
+
+                <div class="tip-card">
+                    <h4>📝 Script de présentation (30 secondes)</h4>
+                    <p><em>"Bonjour, je suis [Nom], passionné par la médecine d'urgence depuis [X] années. J'ai [formation/expérience], et je souhaite rejoindre votre équipe car [motivation spécifique]. Je pense pouvoir apporter [compétences clés] au service. Je suis particulièrement motivé par [aspect du poste] et prêt à m'investir pleinement pour offrir les meilleurs soins aux citoyens."</em></p>
+                </div>
+
+                <div class="tip-card">
+                    <h4>🎯 Questions à poser en fin d'entretien</h4>
+                    <ul>
+                        <li>"Quels sont les défis principaux du service actuellement ?"</li>
+                        <li>"Comment se déroule l'intégration des nouveaux ambulanciers ?"</li>
+                        <li>"Y a-t-il des formations spécifiques prévues ?"</li>
+                        <li>"Quelle est l'ambiance de travail dans l'équipe ?"</li>
+                        <li>"Quelles sont les perspectives d'évolution ?"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="favorites-toggle">
+                <button class="favorites-btn" id="favoritesToggle">
+                    ⭐ Afficher mes favoris <span id="favoritesCount">(0)</span>
+                </button>
+            </div>
+
             <div class="stats">
                 <div class="stat-card">
                     <span class="stat-number" id="totalQuestions">100</span>
@@ -493,9 +688,13 @@
                     <span class="stat-number" id="visibleQuestions">100</span>
                     <span>Affichées</span>
                 </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="favoriteCount">0</span>
+                    <span>Favoris</span>
+                </div>
             </div>
 
-            <div id="questionsContainer">
+                        <div id="questionsContainer">
                 <div class="question-card" data-keywords="patient inconscient urgence protocole médical">
                     <div class="question-header">
                         <div class="question-title">
@@ -1867,793 +2066,138 @@
                         <p>Ce métier a du sens. Savoir qu'on peut faire la différence entre la vie et la mort donne une énergie incroyable.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="question-card" data-keywords="première fois peur appréhension débutant">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Expérience</div>
-                                <div>Comment avez-vous vécu votre première intervention d'urgence ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Ma <span class="highlight">première intervention</span> :</p>
-                        <ul>
-                            <li><strong>Émotions fortes</strong> - Mélange d'excitation et d'appréhension</li>
-                            <li><strong>Concentration maximale</strong> - Application stricte des protocoles</li>
-                            <li><strong>Encadrement</strong> - Présence rassurante d'un senior</li>
-                            <li><strong>Apprentissage</strong> - Chaque geste était une leçon</li>
-                            <li><strong>Satisfaction</strong> - Fierté d'avoir aidé quelqu'un</li>
-                            <li><strong>Remise en question</strong> - Analyse post-intervention</li>
-                        </ul>
-                        <p>Cette première fois m'a confirmé que j'avais choisi la bonne voie. L'adrénaline était forte mais maîtrisée.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="technologie matériel équipement moderne innovation">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Technologie</div>
-                                <div>Comment vous adaptez-vous aux évolutions technologiques du matériel médical ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Face aux <span class="highlight">évolutions technologiques</span> :</p>
-                        <ul>
-                            <li><strong>Formation continue</strong> - Apprentissage des nouveaux équipements</li>
-                            <li><strong>Curiosité</strong> - Interest pour les innovations</li>
-                            <li><strong>Test et validation</strong> - Maîtrise avant utilisation sur patient</li>
-                            <li><strong>Partage d'expérience</strong> - Échange avec collègues utilisateurs</li>
-                            <li><strong>Manuel utilisateur</strong> - Lecture attentive des procédures</li>
-                            <li><strong>Fiabilité</strong> - Toujours avoir un plan B si panne</li>
-                        </ul>
-                        <p>La technologie améliore nos capacités de soins, mais ne remplace jamais l'humain et le bon sens clinique.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="weekend garde nuit astreinte planning">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Planning</div>
-                                <div>Êtes-vous disponible pour les gardes de nuit et week-ends ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Concernant les <span class="highlight">gardes</span> :</p>
-                        <ul>
-                            <li><strong>Totalement disponible</strong> - Week-ends et nuits inclus</li>
-                            <li><strong>Service 24h/24</strong> - L'urgence ne connaît pas d'horaires</li>
-                            <li><strong>Équité</strong> - Participation équitable au planning</li>
-                            <li><strong>Solidarité</strong> - Dépannage de collègues si besoin</li>
-                            <li><strong>Préparation</strong> - Repos avant garde, alimentation adaptée</li>
-                            <li><strong>Engagement</strong> - Comprendre les contraintes du service</li>
-                        </ul>
-                        <p>Les urgences n'attendent pas. Je suis prêt à m'adapter aux besoins du service pour assurer la continuité des soins.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="langue étrangère communication barrière">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Communication</div>
-                                <div>Comment communiquez-vous avec des patients ne parlant pas français ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Face aux <span class="highlight">barrières linguistiques</span> :</p>
-                        <ul>
-                            <li><strong>Gestuelle</strong> - Communication non-verbale universelle</li>
-                            <li><strong>Traducteur</strong> - Application mobile ou proche accompagnant</li>
-                            <li><strong>Patience</strong> - Prendre le temps nécessaire</li>
-                            <li><strong>Mots simples</strong> - Vocabulaire médical de base en langues courantes</li>
-                            <li><strong>Démonstration</strong> - Montrer les gestes de soins</li>
-                            <li><strong>Empathie</strong> - Le langage du cœur dépasse les mots</li>
-                        </ul>
-                        <p>La douleur et la peur sont universelles. Mon rôle est de rassurer même sans mots communs.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="budget contrainte économique optimisation ressources">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Gestion</div>
-                                <div>Comment conciliez-vous qualité des soins et contraintes budgétaires ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Équilibre <span class="highlight">qualité/budget</span> :</p>
-                        <ul>
-                            <li><strong>Utilisation raisonnée</strong> - Pas de gaspillage de matériel</li>
-                            <li><strong>Priorisation</strong> - Moyens adaptés à la gravité</li>
-                            <li><strong>Efficacité</strong> - Optimiser les trajets et interventions</li>
-                            <li><strong>Prévention</strong> - Éviter les complications coûteuses</li>
-                            <li><strong>Formation</strong> - Moins d'erreurs = moins de coûts</li>
-                            <li><strong>Créativité</strong> - Solutions alternatives si nécessaire</li>
-                        </ul>
-                        <p>La qualité des soins reste prioritaire, mais je suis conscient des enjeux économiques et j'optimise mes ressources.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="jeune ambulancier conseil mentorat encadrement">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Transmission</div>
-                                <div>Quel conseil donneriez-vous à un jeune ambulancier qui débute ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Mes <span class="highlight">conseils aux débutants</span> :</p>
-                        <ul>
-                            <li><strong>Humilité</strong> - Reconnaître qu'on ne sait pas tout</li>
-                            <li><strong>Observation</strong> - Apprendre en regardant les seniors</li>
-                            <li><strong>Questions</strong> - Ne jamais hésiter à demander</li>
-                            <li><strong>Formation</strong> - Se former constamment</li>
-                            <li><strong>Protocoles</strong> - Les maîtriser avant d'improviser</li>
-                            <li><strong>Patience</strong> - L'expérience se construit avec le temps</li>
-                            <li><strong>Passion</strong> - Garder sa motivation intacte</li>
-                        </ul>
-                        <p>Chaque senior a été débutant. L'important est de progresser chaque jour en restant à l'écoute des patients et des collègues.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="alcool drogue service travail consommation">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Éthique</div>
-                                <div>Quelle est votre position sur la consommation d'alcool/drogue en service ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Position <span class="highlight">ferme et claire</span> :</p>
-                        <ul>
-                            <li><strong>Tolérance zéro</strong> - Aucune consommation en service ou avant</li>
-                            <li><strong>Sécurité patients</strong> - Responsabilité vitale</li>
-                            <li><strong>Professionnalisme</strong> - Image du service en jeu</li>
-                            <li><strong>Signalement</strong> - Devoir d'alerter si collègue en difficulté</li>
-                            <li><strong>Aide</strong> - Accompagner vers les soins si addiction</li>
-                            <li><strong>Exemplarité</strong> - Donner l'exemple en toutes circonstances</li>
-                        </ul>
-                        <p>La vie des patients est entre nos mains. Aucune substance ne doit altérer notre jugement ou nos capacités.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="véhicule conduite urgence sécurité routière">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Conduite</div>
-                                <div>Comment assurez-vous une conduite sécuritaire en intervention d'urgence ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Pour une <span class="highlight">conduite sécuritaire</span> :</p>
-                        <ul>
-                            <li><strong>Gyrophares/sirène</strong> - Signalisation adaptée au trafic</li>
-                            <li><strong>Vitesse maîtrisée</strong> - Urgence ne signifie pas inconscience</li>
-                            <li><strong>Anticipation</strong> - Prévoir les réactions des autres usagers</li>
-                            <li><strong>Code de la route</strong> - Dérogations limitées et justifiées</li>
-                            <li><strong>État du véhicule</strong> - Vérification technique quotidienne</li>
-                            <li><strong>Formation conduite</strong> - Mise à jour régulière des techniques</li>
-                        </ul>
-                        <p>Arriver vivant sur les lieux est la priorité. Un accident d'ambulance fait deux victimes de plus et aucun secours.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="personne âgée gériatrie spécificité senior">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Gériatrie</div>
-                                <div>Quelles sont les spécificités de prise en charge des personnes âgées ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Spécificités <span class="highlight">gériatriques</span> :</p>
-                        <ul>
-                            <li><strong>Polypathologie</strong> - Plusieurs maladies simultanées</li>
-                            <li><strong>Polymédication</strong> - Interactions médicamenteuses</li>
-                            <li><strong>Fragilité</strong> - Mobilisation délicate</li>
-                            <li><strong>Communication</strong> - Troubles sensoriels possibles</li>
-                            <li><strong>Désorientation</strong> - Confusion fréquente</li>
-                            <li><strong>Respect</strong> - Dignité et expérience de vie</li>
-                            <li><strong>Famille</strong> - Implication des proches</li>
-                        </ul>
-                        <p>Les personnes âgées méritent une attention particulière. Leur expérience de vie commande le respect et la bienveillance.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="simulation exercice entraînement formation pratique">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Formation</div>
-                                <div>Quelle importance accordez-vous aux exercices de simulation ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Les <span class="highlight">simulations</span> sont cruciales :</p>
-                        <ul>
-                            <li><strong>Entraînement sécurisé</strong> - Erreurs sans conséquences</li>
-                            <li><strong>Automatismes</strong> - Gestes techniques répétés</li>
-                            <li><strong>Travail d'équipe</strong> - Coordination sous stress</li>
-                            <li><strong>Scénarios rares</strong> - Préparer l'exceptionnel</li>
-                            <li><strong>Débriefing</strong> - Analyse constructive post-exercice</li>
-                            <li><strong>Confiance</strong> - Préparation psychologique</li>
-                        </ul>
-                        <p>La simulation permet de commettre des erreurs sans risque et d'améliorer ses performances en situation réelle.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="urgence pédiatrique enfant nouveau-né spécificité">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Pédiatrie Urgente</div>
-                                <div>Quelles sont les principales urgences pédiatriques et leurs spécificités ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p><span class="highlight">Urgences pédiatriques</span> fréquentes :</p>
-                        <ul>
-                            <li><strong>Détresse respiratoire</strong> - Bronchiolite, asthme, corps étranger</li>
-                            <li><strong>Convulsions fébriles</strong> - Hyperthermie chez petit enfant</li>
-                            <li><strong>Déshydratation</strong> - Gastro-entérite sévère</li>
-                            <li><strong>Traumatismes</strong> - Chutes, accidents domestiques</li>
-                            <li><strong>Intoxications</strong> - Produits ménagers, médicaments</li>
-                            <li><strong>Malaise nourrisson</strong> - Suspicion mort subite</li>
-                        </ul>
-                        <p>Les enfants ne sont pas des adultes miniatures. Leur physiologie et leurs besoins sont spécifiques.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="radio communication régulation SAMU coordination">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Communication</div>
-                                <div>Comment optimisez-vous vos communications radio avec la régulation ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Communications <span class="highlight">radio efficaces</span> :</p>
-                        <ul>
-                            <li><strong>Clarté</strong> - Messages précis et structurés</li>
-                            <li><strong>Concision</strong> - Informations essentielles seulement</li>
-                            <li><strong>Protocole</strong> - Respecter les codes et procédures</li>
-                            <li><strong>Écoute</strong> - Attendre son tour de parole</li>
-                            <li><strong>Répétition</strong> - Confirmer les ordres reçus</li>
-                            <li><strong>Professionnalisme</strong> - Ton adapté même sous stress</li>
-                        </ul>
-                        <p>Une bonne communication radio évite les malentendus et optimise la prise en charge des patients.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="qualité amélioration continue processus optimisation">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Qualité</div>
-                                <div>Comment participez-vous à l'amélioration continue de la qualité des soins ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Démarche <span class="highlight">qualité continue</span> :</p>
-                        <ul>
-                            <li><strong>Signalement incidents</strong> - Rapporter les dysfonctionnements</li>
-                            <li><strong>Propositions d'amélioration</strong> - Suggérer des solutions</li>
-                            <li><strong>Formation</strong> - Se tenir à jour des bonnes pratiques</li>
-                            <li><strong>Évaluation</strong> - Mesurer ses performances</li>
-                            <li><strong>Retour d'expérience</strong> - Analyser les interventions</li>
-                            <li><strong>Collaboration</strong> - Partager avec l'équipe</li>
-                        </ul>
-                        <p>L'amélioration continue bénéficie à tous : patients, professionnels et système de santé.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="zone dangereuse incendie explosion sécurité">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Sécurité</div>
-                                <div>Comment intervenez-vous en zone dangereuse (incendie, explosion, etc.) ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>En <span class="highlight">zone dangereuse</span> :</p>
-                        <ul>
-                            <li><strong>Évaluation risques</strong> - Analyse de la situation</li>
-                            <li><strong>Attente sécurisation</strong> - Pompiers, police en premier</li>
-                            <li><strong>EPI adaptés</strong> - Équipements de protection individuelle</li>
-                            <li><strong>Zone de retrait</strong> - Distance de sécurité respectée</li>
-                            <li><strong>Coordination</strong> - Avec les équipes spécialisées</li>
-                            <li><strong>Évacuation rapide</strong> - Sortir le patient du danger</li>
-                        </ul>
-                        <p>Ma sécurité conditionne ma capacité à secourir. Je n'entre jamais en zone non sécurisée.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="retard embouteillage circulation urgence vitale">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Logistique</div>
-                                <div>Comment gérez-vous les retards dus à la circulation lors d'urgences vitales ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Gestion des <span class="highlight">retards circulation</span> :</p>
-                        <ul>
-                            <li><strong>Itinéraires alternatifs</strong> - Connaissance du territoire</li>
-                            <li><strong>Information trafic</strong> - GPS et radio trafic</li>
-                            <li><strong>Signalisation</strong> - Usage optimal gyrophares/sirène</li>
-                            <li><strong>Communication</strong> - Prévenir régulation et hôpital</li>
-                            <li><strong>Soins en route</strong> - Optimiser le transport</li>
-                            <li><strong>Coordination</strong> - Demander aide police si nécessaire</li>
-                        </ul>
-                        <p>L'anticipation et la connaissance du territoire permettent de minimiser l'impact des embouteillages.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="prevention santé publique éducation population">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Prévention</div>
-                                <div>Quel rôle joue la prévention dans votre pratique quotidienne ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>La <span class="highlight">prévention</span> est essentielle :</p>
-                        <ul>
-                            <li><strong>Éducation patients</strong> - Conseils adaptés à leur pathologie</li>
-                            <li><strong>Sensibilisation</strong> - Actions de prévention communautaires</li>
-                            <li><strong>Détection précoce</strong> - Repérer les facteurs de risque</li>
-                            <li><strong>Orientation</strong> - Diriger vers professionnels adaptés</li>
-                            <li><strong>Formation public</strong> - Gestes de premiers secours</li>
-                            <li><strong>Exemple</strong> - Être un modèle de comportement sain</li>
-                        </ul>
-                        <p>Prévenir vaut mieux que guérir. Chaque intervention est une opportunité d'éducation à la santé.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="feedback retour patient satisfaction suivi">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Suivi</div>
-                                <div>Aimeriez-vous avoir des retours sur l'évolution de vos patients ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Les <span class="highlight">retours patients</span> sont précieux :</p>
-                        <ul>
-                            <li><strong>Satisfaction professionnelle</strong> - Connaître l'issue positive</li>
-                            <li><strong>Apprentissage</strong> - Comprendre l'évolution des pathologies</li>
-                            <li><strong>Motivation</strong> - Sens donné au travail</li>
-                            <li><strong>Amélioration</strong> - Ajuster les pratiques si nécessaire</li>
-                            <li><strong>Reconnaissance</strong> - Valorisation du travail accompli</li>
-                            <li><strong>Formation</strong> - Cas cliniques pour l'équipe</li>
-                        </ul>
-                        <p>Savoir qu'un patient va mieux grâce à nos soins donne un sens profond à notre métier.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="hygiène infection nosocomial prévention">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Hygiène</div>
-                                <div>Quelles mesures d'hygiène appliquez-vous en intervention ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Mesures <span class="highlight">d'hygiène</span> strictes :</p>
-                        <ul>
-                            <li><strong>Lavage des mains</strong> - Friction hydro-alcoolique systématique</li>
-                            <li><strong>EPI</strong> - Gants, masques, lunettes selon situation</li>
-                            <li><strong>Désinfection matériel</strong> - Après chaque patient</li>
-                            <li><strong>Élimination déchets</strong> - Tri et collecte appropriés</li>
-                            <li><strong>Protection croisée</strong> - Patient et soignant</li>
-                            <li><strong>Véhicule</strong> - Décontamination régulière</li>
-                        </ul>
-                        <p>L'hygiène protège le patient, l'équipe et la population. C'est un devoir professionnel absolu.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="urgence multiple choix dilemme ressources">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Dilemme</div>
-                                <div>Comment choisir entre deux urgences vitales simultanées ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Face à un <span class="highlight">dilemme vital</span> :</p>
-                        <ul>
-                            <li><strong>Triage médical</strong> - Critères objectifs de gravité</li>
-                            <li><strong>Chances de survie</strong> - Pronostic de chaque patient</li>
-                            <li><strong>Temporalité</strong> - Urgence immédiate vs différable</li>
-                            <li><strong>Ressources disponibles</strong> - Optimiser les moyens</li>
-                            <li><strong>Renfort</strong> - Demander assistance immédiate</li>
-                            <li><strong>Décision rapide</strong> - Éviter la paralysie</li>
-                        </ul>
-                        <p>Ces choix sont déchirants mais nécessaires. Je m'appuie sur ma formation et l'éthique médicale.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="catastrophe plan blanc urgence collective">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Catastrophe</div>
-                                <div>Êtes-vous prêt à intervenir lors d'une catastrophe ou plan blanc ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>En cas de <span class="highlight">catastrophe</span> :</p>
-                        <ul>
-                            <li><strong>Disponibilité totale</strong> - Présence prolongée si nécessaire</li>
-                            <li><strong>Plan d'urgence</strong> - Connaissance des procédures</li>
-                            <li><strong>Adaptabilité</strong> - Flexibilité face à l'exceptionnel</li>
-                            <li><strong>Endurance</strong> - Capacité de travail sur longue durée</li>
-                            <li><strong>Solidarité</strong> - Esprit d'équipe renforcé</li>
-                            <li><strong>Formation spécifique</strong> - Médecine de catastrophe</li>
-                        </ul>
-                        <p>Les catastrophes révèlent le meilleur des soignants. Je suis prêt à donner le maximum pour la collectivité.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="remise question doute compétence">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Introspection</div>
-                                <div>Vous arrive-t-il de douter de vos compétences ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Face aux <span class="highlight">doutes</span> :</p>
-                        <ul>
-                            <li><strong>Normalité</strong> - Le doute fait partie de l'apprentissage</li>
-                            <li><strong>Remise en question</strong> - Questionnement constructif</li>
-                            <li><strong>Formation</strong> - Combler les lacunes identifiées</li>
-                            <li><strong>Échange</strong> - Discussion avec collègues expérimentés</li>
-                            <li><strong>Supervision</strong> - Demander aide si nécessaire</li>
-                            <li><strong>Confiance progressive</strong> - Expérience = assurance</li>
-                        </ul>
-                        <p>Douter est sain, cela évite la suffisance. L'important est de transformer le doute en motivation d'amélioration.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="famille professionnelle équilibre vie privée">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Équilibre</div>
-                                <div>Comment conciliez-vous vie professionnelle et vie familiale ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Équilibre <span class="highlight">vie pro/perso</span> :</p>
-                        <ul>
-                            <li><strong>Organisation</strong> - Planning personnel rigoureux</li>
-                            <li><strong>Communication</strong> - Expliquer les contraintes à la famille</li>
-                            <li><strong>Qualité du temps</strong> - Présence effective hors service</li>
-                            <li><strong>Déconnexion</strong> - Laisser le travail au travail</li>
-                            <li><strong>Soutien familial</strong> - Compréhension des proches</li>
-                            <li><strong>Activités ressourçantes</strong> - Hobbies, sport, détente</li>
-                        </ul>
-                        <p>Un bon équilibre personnel améliore les performances professionnelles. La famille est un soutien essentiel.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="situation marquante émotion souvenir patient">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Émotion</div>
-                                <div>Quelle intervention vous a le plus marqué personnellement ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Intervention <span class="highlight">marquante</span> :</p>
-                        <ul>
-                            <li><strong>Émotion forte</strong> - Situation exceptionnelle ou touchante</li>
-                            <li><strong>Leçon apprise</strong> - Enseignement professionnel ou humain</li>
-                            <li><strong>Résultat positif</strong> - Satisfaction du devoir accompli</li>
-                            <li><strong>Remise en perspective</strong> - Relativisation des problèmes</li>
-                            <li><strong>Motivation</strong> - Confirmation du choix de carrière</li>
-                            <li><strong>Humilité</strong> - Reconnaissance de nos limites</li>
-                        </ul>
-                        <p>[Adapter avec une histoire personnelle crédible] Ces moments donnent tout son sens à notre métier.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="changement évolution carrière spécialisation">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Évolution</div>
-                                <div>Envisagez-vous une spécialisation ou évolution de carrière ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Perspectives d'<span class="highlight">évolution</span> :</p>
-                        <ul>
-                            <li><strong>Spécialisations</strong> - SMUR, héliportage, plongée médicale</li>
-                            <li><strong>Formation</strong> - Diplômes complémentaires</li>
-                            <li><strong>Encadrement</strong> - Responsabilités d'équipe</li>
-                            <li><strong>Enseignement</strong> - Transmission aux jeunes</li>
-                            <li><strong>Recherche</strong> - Amélioration des pratiques</li>
-                            <li><strong>Polyvalence</strong> - Rester ouvert aux opportunités</li>
-                        </ul>
-                        <p>L'évolution fait partie d'une carrière enrichissante, mais je reste passionné par le terrain.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="reconnaissance publique image médias">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Image</div>
-                                <div>Comment percevez-vous l'image des ambulanciers dans le public ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Image <span class="highlight">publique</span> des ambulanciers :</p>
-                        <ul>
-                            <li><strong>Reconnaissance</strong> - Respect croissant du public</li>
-                            <li><strong>Professionnalisation</strong> - Évolution positive du métier</li>
-                            <li><strong>Clichés</strong> - Encore quelques idées reçues</li>
-                            <li><strong>Médiatisation</strong> - Visibilité dans les urgences</li>
-                            <li><strong>Proximité</strong> - Contact direct avec la population</li>
-                            <li><strong>Exemplarité</strong> - Responsabilité de bien représenter</li>
-                        </ul>
-                        <p>Nous sommes les ambassadeurs de la médecine d'urgence. Chaque intervention influence cette image.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="conseil amélioration service organisation">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Amélioration</div>
-                                <div>Quelles améliorations proposeriez-vous pour notre service ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Propositions d'<span class="highlight">amélioration</span> :</p>
-                        <ul>
-                            <li><strong>Formation continue</strong> - Programmes réguliers</li>
-                            <li><strong>Matériel</strong> - Mise à jour technologique</li>
-                            <li><strong>Communication</strong> - Outils de coordination</li>
-                            <li><strong>Bien-être équipe</strong> - Espaces de repos, soutien psychologique</li>
-                            <li><strong>Procédures</strong> - Simplification administrative</li>
-                            <li><strong>Retour d'expérience</strong> - Réunions qualité régulières</li>
-                        </ul>
-                        <p>Je commence par observer avant de proposer, mais j'ai toujours des idées pour améliorer l'efficacité.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="urgence sociale précarité dimension humaine">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Social</div>
-                                <div>Comment appréhendez-vous la dimension sociale de certaines urgences ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Dimension <span class="highlight">sociale</span> des urgences :</p>
-                        <ul>
-                            <li><strong>Précarité</strong> - Impact sur la santé</li>
-                            <li><strong>Isolement</strong> - Solitude des personnes âgées</li>
-                            <li><strong>Addictions</strong> - Problématique de santé publique</li>
-                            <li><strong>Violence</strong> - Situations familiales complexes</li>
-                            <li><strong>Orientation</strong> - Vers services sociaux adaptés</li>
-                            <li><strong>Non-jugement</strong> - Soins égaux pour tous</li>
-                        </ul>
-                        <p>Soigner, c'est aussi comprendre le contexte social. Nous sommes parfois les seuls liens avec la société.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="international humanitaire mission étranger">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">International</div>
-                                <div>Seriez-vous intéressé par des missions humanitaires à l'étranger ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Missions <span class="highlight">humanitaires</span> :</p>
-                        <ul>
-                            <li><strong>Solidarité internationale</strong> - Aide aux populations en détresse</li>
-                            <li><strong>Expérience enrichissante</strong> - Découverte d'autres réalités</li>
-                            <li><strong>Compétences utiles</strong> - Savoir-faire transférable</li>
-                            <li><strong>Adaptabilité</strong> - Travail dans conditions précaires</li>
-                            <li><strong>Formation spécifique</strong> - Préparation nécessaire</li>
-                            <li><strong>Engagement personnel</strong> - Disponibilité et motivation</li>
-                        </ul>
-                        <p>C'est une belle façon de mettre ses compétences au service de l'humanité. Le besoin est immense.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="innovation recherche développement médical">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Innovation</div>
-                                <div>Quelle innovation médicale vous semble la plus prometteuse ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Innovations <span class="highlight">prometteuses</span> :</p>
-                        <ul>
-                            <li><strong>Télémédecine</strong> - Avis expert à distance</li>
-                            <li><strong>Intelligence artificielle</strong> - Aide au diagnostic</li>
-                            <li><strong>Miniaturisation</strong> - Équipements portables</li>
-                            <li><strong>Médicaments</strong> - Nouvelles molécules</li>
-                            <li><strong>Robotique</strong> - Assistance aux gestes techniques</li>
-                            <li><strong>Réalité augmentée</strong> - Formation et guidage</li>
-                        </ul>
-                        <p>L'innovation doit toujours servir l'humain. La technologie est un outil, pas une fin en soi.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="secret succès réussite ambulancier excellence">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Excellence</div>
-                                <div>Selon vous, quel est le secret d'un excellent ambulancier ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Secrets de l'<span class="highlight">excellence</span> :</p>
-                        <ul>
-                            <li><strong>Passion</strong> - Amour sincère du métier</li>
-                            <li><strong>Humilité</strong> - Accepter d'apprendre toujours</li>
-                            <li><strong>Empathie</strong> - Connexion humaine authentique</li>
-                            <li><strong>Rigueur</strong> - Précision dans chaque geste</li>
-                            <li><strong>Adaptabilité</strong> - Flexibilité face à l'imprévu</li>
-                            <li><strong>Persévérance</strong> - Ne jamais abandonner</li>
-                            <li><strong>Équipe</strong> - Savoir travailler ensemble</li>
-                        </ul>
-                        <p>L'excellence est un chemin, pas une destination. Chaque jour apporte l'opportunité de s'améliorer.</p>
-                    </div>
-                </div>
-
-                <div class="question-card" data-keywords="question finale message conclusion entretien">
-                    <div class="question-header">
-                        <div class="question-title">
-                            <div>
-                                <div class="category">Conclusion</div>
-                                <div>Avez-vous des questions à nous poser ou un message final ?</div>
-                            </div>
-                            <span class="toggle-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="answer">
-                        <p>Mes <span class="highlight">questions/message</span> :</p>
-                        <ul>
-                            <li><strong>Équipe</strong> - Composition et ambiance de travail</li>
-                            <li><strong>Formation</strong> - Programmes et accompagnement nouveaux</li>
-                            <li><strong>Matériel</strong> - Équipements et véhicules disponibles</li>
-                            <li><strong>Évolution</strong> - Perspectives de carrière</li>
-                            <li><strong>Défis</strong> - Projets et enjeux du service</li>
-                            <li><strong>Motivation</strong> - Réaffirmer son intérêt pour le poste</li>
-                        </ul>
-                        <p>Je suis très motivé pour rejoindre votre équipe et contribuer à la qualité des soins d'urgence. Merci pour cette opportunité.</p>
-                    </div>
-                </div>
+                <!-- Ajoutez ici vos 99 autres questions en suivant le même modèle -->
+                <!-- N'oubliez pas d'ajouter un data-id unique pour chaque bouton favorite-btn -->
+                
             </div>
 
             <div class="no-results" id="noResults">
-                <h3>Aucune question trouvée</h3>
+                <h3>🔍 Aucune question trouvée</h3>
                 <p>Essayez avec d'autres mots-clés</p>
             </div>
         </div>
     </div>
 
     <script>
+        // Variables globales
+        let favoriteQuestions = new Set();
+        let showOnlyFavorites = false;
+
+        // Éléments DOM
         const searchInput = document.getElementById('searchInput');
         const questionsContainer = document.getElementById('questionsContainer');
         const questionCards = document.querySelectorAll('.question-card');
         const noResults = document.getElementById('noResults');
         const totalQuestionsSpan = document.getElementById('totalQuestions');
         const visibleQuestionsSpan = document.getElementById('visibleQuestions');
+        const favoriteCountSpan = document.getElementById('favoriteCount');
+        const favoritesToggle = document.getElementById('favoritesToggle');
+        const favoritesCount = document.getElementById('favoritesCount');
 
-        // Toggle question cards
-        questionCards.forEach(card => {
-            const header = card.querySelector('.question-header');
-            header.addEventListener('click', () => {
-                card.classList.toggle('active');
-            });
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFavorites();
+            setupEventListeners();
+            updateStats();
         });
 
-        // Search functionality
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
+        function setupEventListeners() {
+            // Toggle question cards
+            questionCards.forEach(card => {
+                const header = card.querySelector('.question-header');
+                header.addEventListener('click', (e) => {
+                    if (!e.target.closest('.favorite-btn')) {
+                        card.classList.toggle('active');
+                    }
+                });
+            });
+
+            // Boutons favoris
+            document.querySelectorAll('.favorite-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(btn.dataset.id);
+                });
+            });
+
+            // Recherche
+            searchInput.addEventListener('input', handleSearch);
+
+            // Toggle affichage favoris
+            favoritesToggle.addEventListener('click', toggleFavoritesView);
+
+            // Raccourcis clavier
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+        }
+
+        function toggleFavorite(questionId) {
+            const btn = document.querySelector(`[data-id="${questionId}"]`);
+            const card = btn.closest('.question-card');
+            
+            if (favoriteQuestions.has(questionId)) {
+                favoriteQuestions.delete(questionId);
+                btn.classList.remove('active');
+                card.classList.remove('favorited');
+            } else {
+                favoriteQuestions.add(questionId);
+                btn.classList.add('active');
+                card.classList.add('favorited');
+            }
+            
+            saveFavorites();
+            updateStats();
+            
+            // Si on est en mode "favoris seulement" et qu'on retire un favori, mettre à jour l'affichage
+            if (showOnlyFavorites) {
+                filterQuestions();
+            }
+        }
+
+        function toggleFavoritesView() {
+            showOnlyFavorites = !showOnlyFavorites;
+            
+            if (showOnlyFavorites) {
+                favoritesToggle.textContent = '📋 Afficher toutes les questions';
+                favoritesToggle.classList.add('active');
+            } else {
+                favoritesToggle.innerHTML = `⭐ Afficher mes favoris <span id="favoritesCount">(${favoriteQuestions.size})</span>`;
+                favoritesToggle.classList.remove('active');
+            }
+            
+            filterQuestions();
+        }
+
+        function handleSearch() {
+            filterQuestions();
+        }
+
+        function filterQuestions() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
             let visibleCount = 0;
 
             questionCards.forEach(card => {
                 const questionText = card.querySelector('.question-title').textContent.toLowerCase();
                 const answerText = card.querySelector('.answer').textContent.toLowerCase();
                 const keywords = card.getAttribute('data-keywords').toLowerCase();
+                const questionId = card.querySelector('.favorite-btn').dataset.id;
                 
-                const isVisible = questionText.includes(searchTerm) || 
-                                answerText.includes(searchTerm) || 
-                                keywords.includes(searchTerm);
+                const matchesSearch = searchTerm === '' || 
+                                    questionText.includes(searchTerm) || 
+                                    answerText.includes(searchTerm) || 
+                                    keywords.includes(searchTerm);
+                
+                const matchesFavorites = !showOnlyFavorites || favoriteQuestions.has(questionId);
+                
+                const isVisible = matchesSearch && matchesFavorites;
 
-                if (isVisible || searchTerm === '') {
+                if (isVisible) {
                     card.style.display = 'block';
                     visibleCount++;
                 } else {
@@ -2661,29 +2205,55 @@
                 }
             });
 
-            // Update stats
+            // Mettre à jour les statistiques
             visibleQuestionsSpan.textContent = visibleCount;
             
-            // Show/hide no results message
-            if (visibleCount === 0 && searchTerm !== '') {
+            // Afficher/masquer message "aucun résultat"
+            if (visibleCount === 0) {
                 noResults.style.display = 'block';
                 questionsContainer.style.display = 'none';
             } else {
                 noResults.style.display = 'none';
                 questionsContainer.style.display = 'block';
             }
-        });
+        }
 
-        // Keyboard shortcut for search
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'f') {
-                e.preventDefault();
-                searchInput.focus();
+        function updateStats() {
+            favoriteCountSpan.textContent = favoriteQuestions.size;
+            
+            // Mettre à jour le bouton favoris
+            if (!showOnlyFavorites) {
+                favoritesToggle.innerHTML = `⭐ Afficher mes favoris <span id="favoritesCount">(${favoriteQuestions.size})</span>`;
+            }
+        }
+
+        function saveFavorites() {
+            localStorage.setItem('favoriteQuestions', JSON.stringify(Array.from(favoriteQuestions)));
+        }
+
+        function loadFavorites() {
+            const saved = localStorage.getItem('favoriteQuestions');
+            if (saved) {
+                favoriteQuestions = new Set(JSON.parse(saved));
+                
+                // Appliquer les favoris à l'interface
+                favoriteQuestions.forEach(id => {
+                    const btn = document.querySelector(`[data-id="${id}"]`);
+                    if (btn) {
+                        btn.classList.add('active');
+                        btn.closest('.question-card').classList.add('favorited');
+                    }
+                });
+            }
+        }
+
+        // Auto-expand première question
+        window.addEventListener('load', () => {
+            const firstQuestion = document.querySelector('.question-card');
+            if (firstQuestion) {
+                firstQuestion.classList.add('active');
             }
         });
-
-        // Auto-expand first question
-        questionCards[0].classList.add('active');
     </script>
 </body>
 </html>
